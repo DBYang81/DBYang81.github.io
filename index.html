@@ -123,20 +123,21 @@ if(rc != 0)&#123;
 <li>Quality of Service 2: The client sends a message once and simultaneously ensures that it has arrived at the broker. Quality of Service 2 communication requires more bandwidth than Quality of Service 0 or 1.</li>
 </ul>
 <h2 id="Issues-during-project"><a href="#Issues-during-project" class="headerlink" title="Issues during project"></a>Issues during project</h2><ol>
-<li><p>Understand the MQTT concept and how it works espeically broker like Mosquitto2. Set up Mosquitto as broker requires the configure its config file as:<br> - listener <port number> by default 1883<br> - allow_anonymous true<br>those two configuration should be added into Mosquitto config file</p>
+<li><p>Understand the MQTT concept and how it works espeically broker like Mosquitto</p>
+</li>
+<li><p>Set up Mosquitto as broker requires the configure its config file as:<br> - listener <port number> by default 1883<br> - allow_anonymous true<br>those two configuration should be added into Mosquitto config file</p>
 </li>
 <li><p>Clarify the concept about Topic for which is to publish topic and which is the subscribing topic, understand how it works.</p>
 </li>
-<li><p>Misunderstanding the subscribe function:<br> - subscribe function does not work as publish function the same way<br> - subscribe function should follow by MQTT_Yield() in order to process the message, however the ms should be define properly.<br> - with simulator, due to not consistently send, even on right subscribing topic, which might not miss the message. In order to test it properly, it should work in side infinite loop to test by each time.</p>
+<li><p>Misunderstanding the subscribe function:<br> - subscribe function does not work as publish function the same way<br> - subscribe function should follow by MQTT_Yield(ms) in order to process the message, however the ms should be defined properly.<br> - with simulator, due to not consistently send, even on right subscribing topic, which might not miss the message. In order to test it properly, it should work in side infinite loop to test by each time.</p>
 </li>
 </ol>
-<p>MQTT::subscribe(){<br>        rc &#x3D; MQTTSubscribe(&amp;client, “controller&#x2F;setting”, QOS2, message_Arrived);<br>                if (rc !&#x3D; 0){<br>                printf(“Return code from MQTT subscribe is %d\n”, rc);<br>        }else{<br>                printf(“Subscribe to controller&#x2F;setting”);<br>        }<br>        if ((rc &#x3D; MQTTYield(&amp;client, 100)) !&#x3D; 0)<br>                printf(“Return code from yield is %d\n”, rc);</p>
-<p>}</p>
+<p>MQTT::subscribe(){<br>        rc &#x3D; MQTTSubscribe(&amp;client, “controller&#x2F;setting”, QOS2, message_Arrived);<br>                if (rc !&#x3D; 0){<br>                printf(“Return code from MQTT subscribe is %d\n”, rc);<br>        }else{<br>                printf(“Subscribe to controller&#x2F;setting”);<br>        }<br>        if ((rc &#x3D; MQTTYield(&amp;client, 100)) !&#x3D; 0)<br>                printf(“Return code from yield is %d\n”, rc);<br>}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cl9ztmaau0001eporcawcf95p" data-title="MQTT" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cla02g5h80000qmorgmo9drbx" data-title="MQTT" class="article-share-link">Share</a>
       
       
       
@@ -187,7 +188,7 @@ if(rc != 0)&#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/01/hello-world/" data-id="cl9ztmaaq0000epor4jam8mv5" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/01/hello-world/" data-id="cla02g5hh0001qmorbsfwdaxt" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
