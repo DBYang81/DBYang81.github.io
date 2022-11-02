@@ -14,7 +14,7 @@
 <meta property="og:description" content="What is MQTT?MQTT(Message Queuing Telemetry Transport) is a messaging protocol for restricted low-bandwidth networks and extremely high-latency IoT devices. Since Message Queuing Telemetry Transport i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-01T21:02:41.000Z">
-<meta property="article:modified_time" content="2022-11-01T22:46:35.574Z">
+<meta property="article:modified_time" content="2022-11-02T15:36:08.289Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -97,12 +97,41 @@
       
         <h2 id="What-is-MQTT"><a href="#What-is-MQTT" class="headerlink" title="What is MQTT?"></a>What is MQTT?</h2><p>MQTT(Message Queuing Telemetry Transport) is a messaging protocol for restricted low-bandwidth networks and extremely high-latency IoT devices. Since Message Queuing Telemetry Transport is speicialized for low-bandwidth, high-latency environments. it is an ideal protocol for Machine-to-Machine (M2M)communicaiton.</p>
 <h2 id="Basic-Working-Principle"><a href="#Basic-Working-Principle" class="headerlink" title="Basic Working Principle"></a>Basic Working Principle</h2><p>MQTT works on the publisher &#x2F; subscriber principle and is operated via a central broker. Sender and Receiver have no direct connection. The data sources report their data via a publish and all recipients with interest in certain messages (“marked by the topic”) get the data deliverd because they have registered as subscribers.</p>
-<h2 id="What-is-Topic"><a href="#What-is-Topic" class="headerlink" title="What is Topic?"></a>What is Topic?</h2><p>Topic is the place the publisher will publish to and from where the subscriber to subscribe the message. </p>
+<h2 id="What-is-Topic"><a href="#What-is-Topic" class="headerlink" title="What is Topic?"></a>What is Topic?</h2><p>Topic is the place the publisher will publish to and from where the subscriber to subscribe the message. Under the same topic, subscriber can receive the data that publisher send out, versa visa.</p>
+<h2 id="What-is-Broker"><a href="#What-is-Broker" class="headerlink" title="What is Broker?"></a>What is Broker?</h2><p>The broker is “data handler”, and responsible for receiving al messages, filtering the message and determining who subscribed message to each message and sending the message to those subscribed clients. Broker functions like hub through which every message must be rounted.</p>
+<h3 id="Broker-in-my-project"><a href="#Broker-in-my-project" class="headerlink" title="Broker in my project:"></a>Broker in my project:</h3><p>Mosquitto as local broker by running the commend on Mac: brew services start&#x2F;stop mosquitto<br>activate mosquitto by command: &#x2F;usr&#x2F;local&#x2F;sbin&#x2F;mosquitto -c &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mosquitto&#x2F;mosquitto.conf<br>local server&#x2F;broker is activated for routing the each message from publisher and subscribers.<br>More info about intallation of Mosquitto <a target="_blank" rel="noopener" href="https://subscription.packtpub.com/book/application-development/9781787287815/1/ch01lvl1sec12/installing-a-mosquitto-broker-on-macos">Mosquitto</a></p>
+<h2 id="What-is-a-Payload"><a href="#What-is-a-Payload" class="headerlink" title="What is a Payload?"></a>What is a Payload?</h2><p>The message content is called payload which contains the key data has sending to broker for further handling. The MQTT payload does not have certain structure and can be designed freely. It would be helpful to specify a particular structure for message content so that it can be read by other device or software. Potential message structure are JSON, XML and OPC UA, which enable a smooth internal communication as other software communicate with the same structure.</p>
+<h3 id="In-My-Project"><a href="#In-My-Project" class="headerlink" title="In My Project"></a>In My Project</h3><p>The code indicate the its free style to form content of message.</p>
+<p>void mqtt::mqtt_publish(const char* pub_topic){<br>    MQTTMessage message;<br>    char payload[256];</p>
+<pre><code>message.qos = QOS1;
+message.retained = 0;
+message.dup = false;
+sprintf(payload, &quot;I have no idea how to fix it&quot;);
+message.payload = payload;
+message.payloadlen = strlen(payload);
+rc = MQTTPublish(&amp;client, pub_topic, &amp;message);
+if(rc != 0)&#123;
+    printf(&quot;Return code from MQTT publish is %d\n&quot;, rc);
+&#125;
+</code></pre>
+<p>}</p>
+<p>1.initiaize the message object and payload array size [256]<br>2.header of message can be defined by each assignment, message.qos inidcates the quality of service by 0, 1, 2, which respectively indicates how the message will and can be sent out.</p>
+<p>Quality of Service 0: The client’s message is sent exactly once, regardless of whether it has arrived at the broker.<br>Quality of Service 1: The client’s message is sent over and over again until the broker responds with an confirmation of receipt. This can result in a message arriving at the broker multiple times<br>Quality of Service 2: The client sends a message once and simultaneously ensures that it has arrived at the broker. Quality of Service 2 communication requires more bandwidth than Quality of Service 0 or 1.</p>
+<h2 id="Issues-during-project"><a href="#Issues-during-project" class="headerlink" title="Issues during project"></a>Issues during project</h2><ol>
+<li><p>Understand the MQTT concept and how it works espeically broker like Mosquitto2. Set up Mosquitto as broker requires the configure its config file as:<br> - listener <port number> by default 1883<br> - allow_anonymous true<br>those two configuration should be added into Mosquitto config file</p>
+</li>
+<li><p>Clarify the concept about Topic for which is to publish topic and which is the subscribing topic, understand how it works.</p>
+</li>
+<li><p>Misunderstanding the subscribe function:<br> - subscribe function does not work as publish function the same way<br> - subscribe function should follow by MQTT_Yield() in order to process the message, however the ms should be define properly.<br> - with simulator, due to not consistently send, even on right subscribing topic, which might not miss the message. In order to test it properly, it should work in side infinite loop to test by each time.</p>
+</li>
+</ol>
+<p>MQTT::subscribe(){<br>        rc &#x3D; MQTTSubscribe(&amp;client, “controller&#x2F;setting”, QOS2, message_Arrived);<br>        if (rc !&#x3D; 0){<br>                printf(“Return code from MQTT subscribe is %d\n”, rc);<br>        }else{<br>                printf(“Subscribe to controller&#x2F;setting”);<br>        }<br>        if ((rc &#x3D; MQTTYield(&amp;client, 100)) !&#x3D; 0)<br>                printf(“Return code from yield is %d\n”, rc);</p>
+<p>}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cl9ysva3300004wor3fvd3tms" data-title="MQTT" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cl9zsxarb0000qhor2oys6rr7" data-title="MQTT" class="article-share-link">Share</a>
       
       
       
