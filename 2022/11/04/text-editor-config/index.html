@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Configure in Ubuntu | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ubuntu on VMUbuntu version 22.04 LTS as current Linux operation system runs on VM.  OhMyZshellOn Ubuntu, it install new zsh in order to make things look and behave in a suitable way.ohmyzsh basic inst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Configure in Ubuntu">
+<meta property="og:url" content="http://example.com/2022/11/04/text-editor-config/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu on VMUbuntu version 22.04 LTS as current Linux operation system runs on VM.  OhMyZshellOn Ubuntu, it install new zsh in order to make things look and behave in a suitable way.ohmyzsh basic inst">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/Users/DBY/blog/source/_posts/images/gdb.jpg">
+<meta property="og:image" content="http://example.com/Users/DBY/blog/source/_posts/images/gdb.jpg">
+<meta property="article:published_time" content="2022-11-04T19:41:59.000Z">
+<meta property="article:modified_time" content="2022-11-04T22:31:24.342Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Users/DBY/blog/source/_posts/images/gdb.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-text-editor-config" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/04/text-editor-config/" class="article-date">
+  <time class="dt-published" datetime="2022-11-04T19:41:59.000Z" itemprop="datePublished">2022-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Configure in Ubuntu
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Ubuntu-on-VM"><a href="#Ubuntu-on-VM" class="headerlink" title="Ubuntu on VM"></a>Ubuntu on VM</h2><p><a href="ubuntu.com/#download">Ubuntu</a> version 22.04 LTS as current Linux operation system runs on VM. </p>
+<h2 id="OhMyZshell"><a href="#OhMyZshell" class="headerlink" title="OhMyZshell"></a>OhMyZshell</h2><p>On Ubuntu, it install new zsh in order to make things look and behave in a suitable way.<br><a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh">ohmyzsh</a> basic installation can be run one of following commands in the terminal. Installation can be via the command-line with either <code>curl</code> <code>wget</code>.</p>
+<ul>
+<li>curl <code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></li>
+<li>wget <code>sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></li>
+<li>fetch <code>sh -c &quot;$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></li>
+</ul>
+<p>Simply, on my Ubuntu, I install it by curl but first of all it need to install curl <code>sudo apt install curl</code>.</p>
+<p><code>vim ~/.zshrc</code> config the theme by modify the <code>ZSH_THEME=&quot;robbyrussell&quot;</code> and <code>source ~/.zshrc</code> to display the theme. we can also change the <code>ZSH_THEME=&quot;random&quot;</code> to select various theme in terminal.</p>
+<h2 id="GCC-as-Complier"><a href="#GCC-as-Complier" class="headerlink" title="GCC as Complier"></a>GCC as Complier</h2><p>Select GCC as a complier in Ubuntu - <code>sudo apt install gcc</code></p>
+<h2 id="GDB-as-Debugger"><a href="#GDB-as-Debugger" class="headerlink" title="GDB as Debugger"></a>GDB as Debugger</h2><p><a target="_blank" rel="noopener" href="https://www.sourceware.org/gdb/">GDB</a>, the GNU Project Debugger, allows to see what is going on inside another program while it executes or what another program was doing at the moment it crashed.</p>
+<p>GDB can do four main things to help catch the bugs in the act:</p>
+<ul>
+<li>Start program, specifying anything that might affeect its behavior</li>
+<li>Make your program stop on specified conditions</li>
+<li>Examine what has happened, when program has stopped.</li>
+<li>Change things in the program, so you can experiment with correcting the effects of one bug and go on to learn about another.<br>GDB can run on most popular UNIX and Microsoft Windows variants, as well as on Mac OS X.</li>
+</ul>
+<h3 id="GDB-Supported-Language"><a href="#GDB-Supported-Language" class="headerlink" title="GDB Supported Language"></a>GDB Supported Language</h3><p>GDB supports languages as follows:</p>
+<ul>
+<li>Ada</li>
+<li>Assembly</li>
+<li>C &#x2F; C++</li>
+<li>D</li>
+<li>Fortran</li>
+<li>Go</li>
+<li>Objective-C</li>
+<li>OpenCl</li>
+<li>Modula-2</li>
+<li>Pascal</li>
+<li>Rust</li>
+</ul>
+<h3 id="GDB-Installed-in-Ubuntu"><a href="#GDB-Installed-in-Ubuntu" class="headerlink" title="GDB Installed in Ubuntu"></a>GDB Installed in Ubuntu</h3><p>GDB install - <code>sudo apt install gdb</code><br><img src="/Users/DBY/blog/source/_posts/images/gdb.jpg" alt="GDB Version" width="200"/><br><img src="/Users/DBY/blog/source/_posts/images/gdb.jpg" alt="GDB version"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/04/text-editor-config/" data-id="cla322ugb000325orhy1j1kyj" data-title="Configure in Ubuntu" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/04/Compliers/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">编译器介绍</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/04/text-editor-config/">Configure in Ubuntu</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/04/Compliers/">编译器介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/01/MQTT/">MQTT</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/01/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
