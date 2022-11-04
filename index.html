@@ -71,6 +71,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compliers" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/04/Compliers/" class="article-date">
+  <time class="dt-published" datetime="2022-11-03T22:00:00.000Z" itemprop="datePublished">2022-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/04/Compliers/">编译器介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="编译器详解-gcc-llvm-和clang"><a href="#编译器详解-gcc-llvm-和clang" class="headerlink" title="编译器详解 gcc, llvm 和clang"></a>编译器详解 gcc, llvm 和clang</h1><h2 id="编译器构成"><a href="#编译器构成" class="headerlink" title="编译器构成"></a>编译器构成</h2><p>编译器构成分为3个部分：前端（frontEnd), 优化器（Optimizer）和后端（backEnd).<br>编译过程中，</p>
+<ul>
+<li>前端负责词法和语法分析， 将源代码转化为抽象语法树； </li>
+<li>优化器在前端基础上，对获得的中间代码进行优化，使代码更加高效；</li>
+<li>后端则是将优化的中间代码转化为针对平台的机器代码；</li>
+</ul>
+<h2 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h2><p>GCC（GNU Compiler Collection, GNU 编译器套装）， 是一套有GNU 开发的编程语言编译器。 GCC原名为GNU C 语言编译器，之后经过快速演变，可处理C++、Fortun、Pascal、Objective-C、Java、以及Ada等语言。</p>
+<h2 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h2><p>LLVM （Low Level Virtual Machine，底层虚拟机）提供了与编译器相关支持，能够进行程序语言编译期优化、链接优化、在线编译优化、代码生成。总之，可以作为多种语言编译器的后台来使用。</p>
+<p>从宏观上来讲，LLVM不仅仅是一个编译器或者虚拟机，它是一个众多编译器工具及低级工具技术的统称，它包含了一个前端、优化器、后端以及众多的函数库和模板。从微观上来讲，可以把它看做后端编译器，用来生成目标代码，前端编译器为Clang。Xcode5版本之前，编译器默认使用的是GCC，从Xcode5之后编译器默认使用LLVM。</p>
+<h2 id="LLVM-2-0-CLANG"><a href="#LLVM-2-0-CLANG" class="headerlink" title="LLVM 2.0 -CLANG"></a>LLVM 2.0 -CLANG</h2><p>Clang 是LLVM的前端， 可以用来编译C、C++、Objective-C 等语言。Clang则是以LLVM为后端的一款高效易用， 并且与IDE结合很好的编译前端。</p>
+<p>Clang 只支持C，C++ 和Objective-C 等高级语言，属于LLVM的一部分，发布BSD许可证下。Clang 编译Object-C代码的速度为GCC的3倍左右，同时还能针对用户发生的编译错误准确地给出建议。</p>
+<p>Clang 和GCC的主要区别：</p>
+<ol>
+<li>Clang比GCC编译用的时间更短，包括预处理、语法分析、解析、语义分析、抽象语法树生成的时间。</li>
+<li>Clang比GCC的内存占用更小。</li>
+<li>Clang生成的中间产物比GCC更小。</li>
+<li>Clang的错误提示比GCC更加友好。</li>
+<li>Clang有静态分析，GCC没有。</li>
+<li>Clang使用BSD许可证，GCC使用GPL许可证。</li>
+<li>Clang从一开始就被设计为一个API，允许它被源代码分析工具和IDE集成。GCC被构建成一个单一的静态编译器，这使得它非常难以被作为API并集成到其他工具中。</li>
+<li>GCC比Clang支持更多的语言，例如Java。</li>
+<li>GCC比Clang支持更多的平台。</li>
+<li>GCC比Clang更流行。</li>
+</ol>
+<p>文章来源于<a target="_blank" rel="noopener" href="https://blog.csdn.net/ShockYu/article/details/102793708#:~:text=Clang%E6%AF%94GCC%E7%BC%96%E8%AF%91%E7%94%A8,%E6%8F%90%E7%A4%BA%E6%AF%94GCC%E6%9B%B4%E5%8A%A0%E5%8F%8B%E5%A5%BD%E3%80%82">CSDN</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/04/Compliers/" data-id="cla2fnfgl0001eqor7x0p9ups" data-title="编译器介绍" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-MQTT" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/11/01/MQTT/" class="article-date">
@@ -137,7 +200,7 @@ if(rc != 0)&#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cla02lxjl0000vsorfprog18f" data-title="MQTT" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/01/MQTT/" data-id="cla2fnfgs0002eqorgv1ifjv7" data-title="MQTT" class="article-share-link">Share</a>
       
       
       
@@ -188,7 +251,7 @@ if(rc != 0)&#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/01/hello-world/" data-id="cla02lxjq0001vsor1olp2bc3" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/01/hello-world/" data-id="cla2fnfge0000eqor2c1v9z5j" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -229,6 +292,10 @@ if(rc != 0)&#123;
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/04/Compliers/">编译器介绍</a>
+          </li>
         
           <li>
             <a href="/2022/11/01/MQTT/">MQTT</a>
